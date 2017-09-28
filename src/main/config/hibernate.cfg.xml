@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+	<!-- 方言使用什么数据库，这里mysql -->
+	<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+	<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+	<property name="connection.username">root</property>
+	<property name="connection.password">911914786</property>
+	<!-- 设置编码 -->
+	<property name="connection.useUnicode">true</property>
+	<property name="connection.characterEncoding">utf-8</property>
+	<property name="connection.url">jdbc:mysql://localhost:3306/company_profile?serverTimezone=GMT%2B8</property>
+	<!--<property name="connection.url">jdbc:mysql://118.89.25.195:3306/company_profile?serverTimezone=GMT%2B8</property>-->
+
+	<!-- 
+		validate 加载hibernate时，验证数据库的结构
+		update  加载hibernate时，检查数据库，如果表不存在，则创建，如果存在，则更新
+		create  每次加载hiberante,都会创建表
+		create-drop  每次加载hiberante,创建，卸载hiberante时，销毁
+	-->
+	<property name="hbm2ddl.auto">update</property>
+	<!-- 
+		显示sql语句,格式化sql语句
+	-->
+	<property name="show_sql">true</property>
+	<property name="format_sql">true</property>
+	<!-- 
+		session要从当前线程中产生
+	-->
+	<!--<property name="current_session_context_class">thread</property>-->
+	<!--不用上面的，改成绑定spring,因为spring中配置的事务只对spring环境下，不对上面session生效-->
+	<property name="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</property>
+	<mapping resource="com/devin/company_profile/hbm/Index.hbm.xml" />
+	<mapping resource="com/devin/company_profile/hbm/User.hbm.xml"/>
+	<mapping resource="com/devin/company_profile/hbm/Work.hbm.xml"/>
+	<mapping resource="com/devin/company_profile/hbm/Contact.hbm.xml"/>
+	<mapping resource="com/devin/company_profile/hbm/Subscribe.hbm.xml"/>
+</session-factory>
+</hibernate-configuration>

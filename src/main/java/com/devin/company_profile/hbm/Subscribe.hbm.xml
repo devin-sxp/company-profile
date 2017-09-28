@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.devin.company_profile">
+	<class name="com.devin.company_profile.entity.Subscribe" table="d_subscribe">
+		<id name="id" length="5" type="java.lang.Long" column="id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="email" length="200" column="email" type="java.lang.String"></property>
+		<property name="createTime" column="create_time" type="java.util.Date"></property>
+		<property name="updateTime" column="update_time" type="java.util.Date"></property>
+		<property name="createUser" length="5" column="create_user" type="java.lang.Long"></property>
+		<property name="updateUser" length="5" column="update_user" type="java.lang.Long"></property>
+		<property name="status" length="1" type="java.lang.Integer"></property>
+		
+	</class>
+	
+</hibernate-mapping>

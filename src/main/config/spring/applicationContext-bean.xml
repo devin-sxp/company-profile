@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="hibernateTemplate" name="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="indexDao" class="com.devin.company_profile.dao.impl.IndexDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate"></ref>
+        </property>
+    </bean>
+    <bean id="indexService" class="com.devin.company_profile.service.impl.IndexServiceImpl">
+        <property name="indexDao">
+            <ref bean="indexDao"/>
+        </property>
+    </bean>
+    <bean id="indexAction" class="com.devin.company_profile.action.IndexAction" scope="prototype">
+        <property name="indexService">
+            <ref bean="indexService"/>
+        </property>
+    </bean>
+
+    <bean id="userDao" class="com.devin.company_profile.dao.impl.UserDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="userService" class="com.devin.company_profile.service.impl.UserServiceImpl">
+        <property name="userDao">
+            <ref bean="userDao"/>
+        </property>
+    </bean>
+    <bean id="userAction" class="com.devin.company_profile.action.UserAction">
+        <property name="userService">
+            <ref bean="userService"/>
+        </property>
+    </bean>
+
+    <bean id="workDao" class="com.devin.company_profile.dao.impl.WorkDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean id="workService" class="com.devin.company_profile.service.impl.WorkServiceImpl">
+        <property name="workDao">
+            <ref bean="workDao"/>
+        </property>
+    </bean>
+    <bean class="com.devin.company_profile.action.WorkAction" id="workAction">
+        <property name="workService">
+            <ref bean="workService"/>
+        </property>
+    </bean>
+
+    <bean class="com.devin.company_profile.dao.impl.ContactDaoImpl" id="contactDao">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean class="com.devin.company_profile.service.impl.ContactServiceImpl" id="contactService">
+        <property name="contactDao">
+            <ref bean="contactDao"/>
+        </property>
+    </bean>
+    <bean class="com.devin.company_profile.action.ContactAction" id="contactAction">
+        <property name="contactService">
+            <ref bean="contactService"/>
+        </property>
+    </bean>
+
+    <bean class="com.devin.company_profile.dao.impl.SubscribeDaoImpl" id="subscribeDao">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <bean class="com.devin.company_profile.service.impl.SubscribeServiceImpl" id="subscribeService">
+        <property name="subscribeDao">
+            <ref bean="subscribeDao"/>
+        </property>
+    </bean>
+    <bean class="com.devin.company_profile.action.SubscribeAction" id="subscribeAction">
+        <property name="subscribeService">
+            <ref bean="subscribeService"/>
+        </property>
+    </bean>
+</beans>

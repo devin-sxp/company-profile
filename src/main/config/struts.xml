@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 
+		常量
+		   用来改变default.properties文件中的常量的设置
+	 -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<!-- 
+		一般在开发的情况下，设置struts.devMode为true,这样修改完xml文件以后不用重新启动了
+	 -->
+	<constant name="struts.devMode" value="true"/>
+	<include file="struts/struts-index.xml"></include>
+	<include file="struts/struts-user.xml"></include>
+	<include file="struts/struts-work.xml"></include>
+	<include file="struts/struts-contact.xml"></include>
+	<include file="struts/struts-subscribe.xml"></include>
+	<!--<include file="struts-default.xml"></include>-->
+	<!--<include file="struts-plugin.xml"></include>-->
+</struts>	
