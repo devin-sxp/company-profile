@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 
 public class IndexAction extends ActionSupport implements ServletRequestAware{
 
+	private static final String INDEX = "index";
+	private static final String GET_INDEX_BY_ID = "getIndexById";
+
 	private IIndexService indexService;
 	private HttpServletRequest request;
 	private String result;
@@ -43,7 +46,7 @@ public class IndexAction extends ActionSupport implements ServletRequestAware{
 		Index index = indexService.getEntryById(Long.parseLong(id));
 		JSONObject json = JSONObject.fromObject(index);
 		result = json.toString();
-		return "getIndexById";
+		return GET_INDEX_BY_ID;
 	}
 
 	public String saveIndex(){
@@ -52,7 +55,7 @@ public class IndexAction extends ActionSupport implements ServletRequestAware{
 		index.setIndexDescription("在描述信息");
 		index.setStatus(1);
 		indexService.saveEntry(index);
-		return "index";
+		return INDEX;
 	}
 
 }

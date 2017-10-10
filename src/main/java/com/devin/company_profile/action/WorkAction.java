@@ -13,6 +13,8 @@ import java.util.Map;
 
 public class WorkAction extends ActionSupport implements ServletRequestAware{
 
+	private static final String GET_WORKS = "getWorks";
+
 	private IWorkService workService;
 	private HttpServletRequest request;
 	private String resultWork;
@@ -50,7 +52,7 @@ public class WorkAction extends ActionSupport implements ServletRequestAware{
 		map.put("workstations",workstations);
 		JSONArray json = JSONArray.fromObject(map);
 		resultWork = json.toString();
-		return "getWorks";
+		return GET_WORKS;
 	}
 
 }

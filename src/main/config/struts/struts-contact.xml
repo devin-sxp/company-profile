@@ -6,7 +6,7 @@
 	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
 	<package name="contact" namespace="/" extends="struts-default,json-default">
 		<action name="contactAction_*" method="{1}" class="contactAction">
-			<result name="getContacts" type="json"><param name="data">result</param></result>
+			<result name="getContacts" type="json"></result>
  		</action>
 	</package>
 </struts>	

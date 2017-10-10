@@ -37,7 +37,7 @@
 	<div id="menu-item" class="menu-item hide-menu">
 		<div class="container">
 			<ul>
-				<a href="index.html"><li>主页</li></a>
+				<a href="<%=path%>/indexAction_showIndex"><li>主页</li></a>
 				<a href="#about"><li>关于</li></a>
 				<a href="#expertise"><li>专家设计意见</li></a>
 				<a href="#workstation"><li>工作站</li></a>

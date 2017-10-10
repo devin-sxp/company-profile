@@ -123,8 +123,7 @@ var getContacts = function () {
     array.push("fa-phone");
     array.push("fa-paper-plane");
     $.post(getRootPath()+"/contactAction_getContacts",{},function (data, status) {
-        var result = eval("(" + data.result + ")");
-        $.each(result,function (indexObj,contact) {
+        $.each(data,function (indexObj,contact) {
             var div_html = "<div class=\"col-sm-4\">" +
                 "<div class=\"vira-card\">" +
                 "<div class=\"vira-card-header\">" +
@@ -138,11 +137,14 @@ var getContacts = function () {
                 "</div>";
             $("#div_contacts").append(div_html);
         });
-        console.log(result)
     },"json")
 };
 
 $("#btn_send").on('click',function () {
+    if($('#user-email').val().trim() == '' ){
+        alert("please enter news!");
+        return;
+    }
     $.post(getRootPath()+"/subscribeAction_saveSubscribe",{'user-email':$('#user-email').val()}, function (data,status) {
         var isSuccess = eval(data.success);
         if(status == 'success' && isSuccess == true){

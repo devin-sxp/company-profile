@@ -10,6 +10,8 @@ import java.util.Date;
 
 public class SubscribeAction extends ActionSupport implements ServletRequestAware{
 
+	private static final String SAVE_SUBSCRIBE = "saveSubscribe";
+
 	private ISubscribeService subscribeService;
 	private HttpServletRequest request;
 	private boolean isSuccess;
@@ -44,7 +46,7 @@ public class SubscribeAction extends ActionSupport implements ServletRequestAwar
 		}catch (Exception e){
 			isSuccess = false;
 		}
-		return "saveSubscribe";
+		return SAVE_SUBSCRIBE;
 	}
 
 }
