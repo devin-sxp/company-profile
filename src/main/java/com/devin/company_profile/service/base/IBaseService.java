@@ -16,4 +16,6 @@ public interface IBaseService<T> {
     public Collection<T> queryEntryByCondition(Map<String,Object> mapCondition,String limit, String offset);
     public T getEntryById(Serializable id);
     public Set<T> getEnrtysByIds(Serializable[] ids);
+    public T queryEntryByProperty(Map<String, Object> map);
+
 }

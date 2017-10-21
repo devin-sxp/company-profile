@@ -50,4 +50,9 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T>{
     public Set<T> getEnrtysByIds(Serializable[] ids) {
         return baseDao().getEntrysByIds(ids);
     }
+
+    @Override
+    public T queryEntryByProperty(Map<String, Object> map) {
+        return baseDao().queryEntryByProperty(map);
+    }
 }

@@ -16,5 +16,5 @@ public interface IBaseDao<T> {
     public Collection<T> queryEntryByCondition(Map<String,Object> mapCondition,String limit,String offset);
     public T getEntryById(Serializable id);
     public Set<T> getEntrysByIds(Serializable[] ids);
-
+    public T queryEntryByProperty(Map<String, Object> map);
 }

@@ -3,6 +3,7 @@ package com.devin.company_profile.dao.base.impl;
 import com.devin.company_profile.dao.base.IBaseDao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 
@@ -76,6 +77,10 @@ public abstract class BaseDaoImpl<T>  implements IBaseDao<T> {
         return (Collection<T>) this.hibernateTemplate.find("from " + this.entityClass.getName());
     }
 
+    /**
+     * 根据条件查询1
+     * @return
+     */
     @Override
     public Collection<T> queryEntryByCondition(Map<String, Object> mapCondition,final String limit,final String offset) {
         final StringBuffer stringBuffer = new StringBuffer();
@@ -111,6 +116,31 @@ public abstract class BaseDaoImpl<T>  implements IBaseDao<T> {
 
     }
 
+    /**
+     * 根据条件查询2
+     * @param map
+     * @return
+     */
+    public T queryEntryByProperty(final Map<String, Object> map){
+        final StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("from "+this.entityClass.getName());
+        stringBuffer.append(" where 1=1");
+        for (Map.Entry<String, Object> entry:map.entrySet()) {
+            stringBuffer.append(" and "+entry.getKey()+"=:"+entry.getKey());
+
+        }
+
+        return this.hibernateTemplate.execute(new HibernateCallback<T>() {
+            @Override
+            public T doInHibernate(Session session) throws HibernateException {
+                Query query =  session.createQuery(stringBuffer.toString());
+                for (Map.Entry<String,Object> entry:map.entrySet()){
+                    query.setParameter(entry.getKey(),entry.getValue());
+                }
+                return (T)query.uniqueResult();
+            }
+        });
+    }
 
     @Override
     public T getEntryById(Serializable id) {
@@ -132,4 +162,5 @@ public abstract class BaseDaoImpl<T>  implements IBaseDao<T> {
         buffer.append(")");
         return new HashSet<T>((HashSet<T>)this.hibernateTemplate.find(buffer.toString()));
     }
+
 }
